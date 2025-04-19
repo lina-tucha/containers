@@ -1,0 +1,8 @@
+docker build -t single-stage -f Dockerfile.single .
+
+docker build -t multi-stage -f Dockerfile.multi .
+
+docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | findstr "stage"
+
+multi-stage      latest    138MB
+single-stage     latest    1.02GB

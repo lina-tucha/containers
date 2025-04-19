@@ -1,0 +1,2 @@
+docker build -t minimal-python .
+docker run --rm minimal-python

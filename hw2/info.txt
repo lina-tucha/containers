@@ -1,0 +1,5 @@
+docker-compose up --build
+
+Бэкенд: http://localhost:5000/messages
+
+Фронтенд: http://localhost:5001
