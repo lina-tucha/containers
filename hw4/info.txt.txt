@@ -1,0 +1,23 @@
+k3d cluster create mycluster --api-port 6550 -p "8090:80@loadbalancer" --agents 1
+
+docker build -t my-nginx .
+
+k3d image import my-nginx -c mycluster
+
+// kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.9/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+
+// kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.9/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
+
+kubectl apply -f deployment.yaml
+
+kubectl apply -f service.yaml
+
+kubectl apply -f ingress.yaml
+
+kubectl get pods
+
+kubectl get svc
+
+kubectl get ingress
+
+http://localhost:8090
