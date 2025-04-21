@@ -1,0 +1,25 @@
+k3d cluster create mycluster -p "30007:30007@loadbalancer"
+
+cd backend
+
+docker build -t my-backend-image .
+
+cd ..
+
+docker build -t my-frontend-image .
+
+cd ..
+
+k3d image import my-backend-image -c mycluster
+
+k3d image import my-frontend-image -c mycluster
+
+kubectl apply -f k8s/pv.yaml
+
+kubectl apply -f k8s/pvc.yaml
+
+kubectl apply -f k8s/backend-statefulset.yaml
+
+kubectl apply -f k8s/frontend-deployment.yaml
+
+kubectl apply -f k8s/service.yaml
